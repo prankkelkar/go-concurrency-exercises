@@ -3,10 +3,18 @@ package main
 import (
 	"io"
 	"log"
+	"net"
+	"os"
 )
 
 func main() {
 	// TODO: connect to server on localhost port 8000
+	res, err := net.Dial("tcp", "localhost:8000")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	mustCopy(os.Stdout, res)
 
 }
 
